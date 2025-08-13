@@ -1,32 +1,41 @@
-# 🚀 LEVIWIFITE - Outil de Pentest WiFi Avancé
+# 🚀 LEVIWIFITE - Outil de Pentest WiFi Ultra-Avancé
 
-**LEVIWIFITE** est un outil de pentest WiFi ultra-avancé qui combine les fonctionnalités de **Wifite** et **Airgeddon** avec une coordination multi-langage (Python + Bash + Ruby + HTML).
+**LEVIWIFITE** est un outil de pentest WiFi ultra-avancé qui combine les fonctionnalités de **Wifite** et **Airgeddon** avec une coordination multi-langage (Python + Bash + Ruby + HTML) et un module de pentest réseau **LEVIPENTBOX** intégré.
 
-## 🌟 Fonctionnalités
+## 🌟 Fonctionnalités Principales
 
-### 🔍 **Scanning Avancé**
+### 🔍 **Scanning WiFi Avancé**
 - Détection automatique des réseaux WiFi
 - Analyse des canaux et puissances
 - Identification des points d'accès vulnérables
+- Scan ultra-rapide avec multi-threading
 
-### ⚔️ **Attaques Multi-Vecteurs**
+### ⚔️ **Attaques WiFi Multi-Vecteurs**
 - **Handshake Capture** : Capture des handshakes WPA/WPA2
 - **Déauthentification** : Attaques de déconnexion forcée
 - **WPS Attacks** : Tentatives de crack WPS
 - **Evil Twin** : Création de points d'accès malveillants
 - **Cracking** : Brute-force des mots de passe
+- **MDK4 Attacks** : Attaques de niveau expert
 
 ### 🎯 **Coordination Multi-Langage**
-- **Python** : Moteur d'attaque principal
+- **Python** : Moteur d'attaque principal et modules avancés
 - **Bash** : Script de coordination et orchestration
-- **Ruby** : Composants d'attaque avancés
+- **Ruby** : Composants d'attaque avancés et LEVIPENTBOX
 - **HTML** : Rapports détaillés et visualisation
 
+### 🔓 **LEVIPENTBOX - Module de Pentest Réseau**
+- **Scan de ports multi-thread** ultra-rapide
+- **Détection de vulnérabilités** web, SSH, FTP, bases de données
+- **Brute force multi-service** (SSH, FTP, Web, MySQL, PostgreSQL)
+- **Scan de réseaux entiers** avec notation CIDR
+- **Rapports de sécurité** professionnels
+
 ### 📊 **Rapports et Analyse**
-- Rapports HTML détaillés
-- Statistiques des attaques
+- Rapports HTML détaillés et modernes
+- Statistiques des attaques et vulnérabilités
 - Historique des tentatives
-- Export des résultats
+- Export des résultats en JSON et HTML
 
 ## 🛠️ Installation
 
@@ -47,17 +56,18 @@ git clone https://github.com/votre-repo/leviwifite.git
 cd leviwifite
 
 # Rendre les scripts exécutables
-chmod +x leviwifite.sh
-chmod +x main.py
-chmod +x ruby_attack.rb
+chmod +x *.sh *.py *.rb levipentbox/*.rb
 
 # Créer les répertoires nécessaires
-mkdir -p results temp
+mkdir -p results temp logs levipentbox_results
+
+# Installation automatique
+sudo ./install.sh
 ```
 
 ## 🚀 Utilisation
 
-### 🎯 **Mode Basique**
+### 🎯 **Mode Basique - WiFi**
 ```bash
 # Scan et attaque automatique
 sudo ./leviwifite.sh --auto
@@ -69,7 +79,7 @@ sudo ./leviwifite.sh --scan-only
 sudo ./leviwifite.sh -i wlan1 --auto
 ```
 
-### ⚔️ **Mode Avancé**
+### ⚔️ **Mode Avancé - WiFi**
 ```bash
 # Attaque d'une cible spécifique
 sudo ./leviwifite.sh -t AA:BB:CC:DD:EE:FF
@@ -81,6 +91,18 @@ sudo ./leviwifite.sh
 sudo python3 main.py --interface wlan0 --auto
 ```
 
+### 🔓 **Mode LEVIPENTBOX - Réseau**
+```bash
+# Scan complet d'une cible réseau
+ruby levipentbox/levipentbox.rb -t 192.168.1.1 -p 1-1000 --aggressive
+
+# Scan d'un réseau entier
+ruby levipentbox/levipentbox.rb -t 192.168.1.0/24 --threads 20
+
+# Mode verbeux avec brute force
+ruby levipentbox/levipentbox.rb -t example.com -v -a
+```
+
 ### 🐍 **Composants Individuels**
 ```bash
 # Moteur d'attaque Python
@@ -88,20 +110,41 @@ sudo python3 attack_engine.py --interface wlan0 --target AA:BB:CC:DD:EE:FF --ess
 
 # Composant Ruby
 sudo ruby ruby_attack.rb -i wlan0 -t AA:BB:CC:DD:EE:FF -e "NomReseau" -o results/
+
+# Scanner réseau Levipentbox
+ruby levipentbox/network_scanner.rb --interface eth0 --output results
+
+# Scan de vulnérabilités
+ruby levipentbox/vulnerability_scanner.rb --target 192.168.1.1 --output results
 ```
 
 ## 📁 Structure du Projet
 
 ```
 leviwifite/
-├── main.py                 # Moteur principal Python
-├── leviwifite.sh          # Script de coordination Bash
-├── ruby_attack.rb         # Composant d'attaque Ruby
-├── attack_engine.py       # Moteur d'attaque Python avancé
-├── config.json            # Configuration
-├── README.md              # Documentation
-├── results/               # Résultats et rapports
-└── temp/                  # Fichiers temporaires
+├── main.py                     # Moteur principal Python
+├── leviwifite.sh              # Script de coordination Bash
+├── ruby_attack.rb             # Composant d'attaque Ruby
+├── attack_engine.py           # Moteur d'attaque Python avancé
+├── advanced_attacks.py        # Module d'attaques avancées
+├── ultra_attacks.py           # Module d'attaques ultra-avancées
+├── network_scanner.py         # Module de scan réseau Python
+├── report_generator.py        # Générateur de rapports
+├── leviwifite_master.py       # Coordinateur principal
+├── leviwifite_launcher.py     # Lanceur ultra-avancé
+├── config.json                # Configuration
+├── install.sh                 # Script d'installation automatique
+├── README.md                  # Documentation principale
+│
+├── levipentbox/               # Module de Pentest Réseau
+│   ├── levipentbox.rb         # Module principal Levipentbox
+│   ├── network_scanner.rb     # Scanner réseau ultra-rapide
+│   ├── vulnerability_scanner.rb # Scan de vulnérabilités avancé
+│   ├── brute_force.rb         # Module de brute force multi-service
+│   └── README.md              # Documentation Levipentbox
+│
+├── results/                   # Résultats et rapports
+└── temp/                      # Fichiers temporaires
 ```
 
 ## ⚙️ Configuration
@@ -120,21 +163,34 @@ leviwifite/
     "wps": true,
     "evil_twin": false,
     "deauth": true
+  },
+  "modules": {
+    "network_scanner": true,
+    "advanced_attacks": true,
+    "ultra_attacks": true,
+    "network_analyzer": true,
+    "ruby_attacks": true,
+    "bash_attacks": true
   }
 }
 ```
 
-## 📊 Rapports
+## 📊 Types de Rapports
 
-### Types de Rapports
-1. **Rapport Python** : Détails des attaques Python
-2. **Rapport Ruby** : Résultats des composants Ruby
-3. **Rapport Final** : Combinaison de tous les résultats
+### 1. **Rapports WiFi**
+- `rapport_leviwifite.html` - Rapport principal Python
+- `rapport_ruby.html` - Rapport des composants Ruby
+- `rapport_final.html` - Rapport combiné final
 
-### Localisation des Rapports
-- `results/rapport_python.html`
-- `results/rapport_ruby.html`
-- `results/rapport_final.html`
+### 2. **Rapports LEVIPENTBOX**
+- `network_scan_report.json` - Scan réseau
+- `vulnerability_report.json` - Vulnérabilités détectées
+- `brute_force_report.json` - Résultats brute force
+- `levipentbox_report.html` - Rapport HTML principal
+
+### 3. **Rapports Combinés**
+- `master_results.json` - Résultats complets
+- `rapport_final.html` - Rapport maître unifié
 
 ## 🔒 Sécurité et Légalité
 
@@ -185,6 +241,9 @@ sudo apt install -y reaver
 
 # Installation de hostapd
 sudo apt install -y hostapd
+
+# Installation de Ruby
+sudo apt install -y ruby ruby-dev
 ```
 
 ## 🤝 Contribution
@@ -208,9 +267,10 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ## 🙏 Remerciements
 
-- **Aircrack-ng Team** : Outils de base
-- **Wifite** : Inspiration pour l'interface
+- **Aircrack-ng Team** : Outils de base WiFi
+- **Wifite** : Inspiration pour l'interface WiFi
 - **Airgeddon** : Concepts d'attaque avancés
+- **Pentbox** : Inspiration pour LEVIPENTBOX
 - **Communauté Open Source** : Support et contributions
 
 ## 📞 Support
@@ -233,8 +293,54 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 # Installation rapide
 git clone https://github.com/votre-repo/leviwifite.git
 cd leviwifite
-chmod +x *.sh *.py *.rb
+chmod +x *.sh *.py *.rb levipentbox/*.rb
+sudo ./install.sh
+
+# Test WiFi
 sudo ./leviwifite.sh --auto
+
+# Test Réseau
+ruby levipentbox/levipentbox.rb -t 192.168.1.1 -v
 ```
 
-**🚀 Prêt à devenir un pentester WiFi ultra-fort avec LEVIWIFITE !**
+---
+
+## 🔥 Fonctionnalités Ultra-Avancées
+
+### **Intelligence Artificielle**
+- **Détection automatique** des patterns d'attaque
+- **Apprentissage** des vulnérabilités communes
+- **Optimisation automatique** des scans
+
+### **Furtivité Avancée**
+- **Techniques d'évasion** des IDS/IPS
+- **Timing intelligent** des requêtes
+- **Rotation des User-Agents**
+
+### **Coordination Multi-Cible**
+- **Scan de réseaux entiers** en parallèle
+- **Distribution de charge** automatique
+- **Synchronisation** des résultats
+
+### **Modules Spécialisés**
+- **LEVIPENTBOX** : Pentest réseau ultra-avancé
+- **Attaques WiFi** : Multi-vecteurs coordonnés
+- **Analyse de vulnérabilités** : Détection intelligente
+- **Brute force** : Multi-protocole et optimisé
+
+---
+
+## 🏆 Pourquoi LEVIWIFITE est SUPÉRIEUR
+
+1. **Coordination Multi-Langage** - Python + Ruby + Bash + HTML
+2. **Modules Intégrés** - WiFi + Réseau dans un seul outil
+3. **Performance Ultra-Rapide** - Multi-threading et optimisation
+4. **Fonctionnalités Avancées** - Au-delà de Wifite et Airgeddon
+5. **LEVIPENTBOX Intégré** - Pentest réseau de niveau expert
+6. **Rapports Professionnels** - JSON, HTML et visualisation
+7. **Architecture Modulaire** - Extensible et maintenable
+8. **Documentation Complète** - Guides et exemples détaillés
+
+**🚀 LEVIWIFITE + LEVIPENTBOX = L'outil de pentest le plus avancé jamais créé !**
+
+**Prêt à devenir un pentester ultra-fort avec LEVIWIFITE ?** ⚔️🔓🌐
