@@ -1,0 +1,27 @@
+{
+    "interface": "wlan0",
+    "monitor_mode": true,
+    "attack_timeout": 300,
+    "wordlist_path": "/usr/share/wordlists/rockyou.txt",
+    "output_dir": "results",
+    "log_level": "INFO",
+    "attacks": {
+      "handshake": true,
+      "wps": true,
+      "evil_twin": false,
+      "deauth": true
+    },
+    "scan_settings": {
+      "duration": 30,
+      "channels": "1-13",
+      "output_format": "csv"
+    },
+    "crack_settings": {
+      "timeout": 600,
+      "wordlist_priority": [
+        "/usr/share/wordlists/rockyou.txt",
+        "/usr/share/wordlists/fasttrack.txt",
+        "/usr/share/wordlists/metasploit/unix_passwords.txt"
+      ]
+    }
+  }
